@@ -68,6 +68,11 @@ public final class ShopCommand extends AbstractCommand<ShopPlugin> {
 
     protected void onEnable() {
         final NetworkServer targetServer = NetworkServer.current().getManager();
+        rootNode.arguments("[item]")
+            .denyTabCompletion()
+            .description("Search for shop chests")
+            .remoteServer(targetServer)
+            .senderCaller(this::search);
         rootNode.addChild("search").arguments("[item]")
             .denyTabCompletion()
             .description("Search for shop chests")
